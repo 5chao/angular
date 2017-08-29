@@ -1,8 +1,11 @@
 .DS_STORE
 
 /dist/
+bazel-*
+e2e_test.*
 node_modules
 bower_components
+tools/gulp-tasks/cldr/cldr-data/
 
 # Include when developing application packages.
 pubspec.lock
@@ -17,8 +20,9 @@ modules/.vscode
 # Don't check in secret files
 *secret.js
 
-# Ignore npm debug log
+# Ignore npm/yarn debug log
 npm-debug.log
+yarn-error.log
 
 # build-analytics
 .build-analytics

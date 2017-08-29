@@ -18,13 +18,16 @@
 
   function playgroundBootstrap() {
     // check query param
-    var useBundles = location.search.indexOf('bundles=false') == -1;
+    const useBundles = location.search.indexOf('bundles=false') == -1;
 
     if (useBundles) {
       System.config({
         map: {
           'index': 'index.js',
           '@angular/common': '/packages-dist/common/bundles/common.umd.js',
+          '@angular/animations': '/packages-dist/animation/bundles/animations.umd.js',
+          '@angular/platform-browser/animations':
+              '/packages-dist/platform-browser/animations/bundles/platform-browser-animations.umd.js',
           '@angular/compiler': '/packages-dist/compiler/bundles/compiler.umd.js',
           '@angular/core': '/packages-dist/core/bundles/core.umd.js',
           '@angular/forms': '/packages-dist/forms/bundles/forms.umd.js',
@@ -39,16 +42,12 @@
               '/packages-dist/platform-webworker-dynamic/bundles/platform-webworker-dynamic.umd.js',
           '@angular/router': '/packages-dist/router/bundles/router.umd.js',
           '@angular/upgrade': '/packages-dist/upgrade/bundles/upgrade.umd.js',
+          '@angular/upgrade/static': '/packages-dist/upgrade/bundles/upgrade-static.umd.js',
           'rxjs': '/all/playground/vendor/rxjs',
-
-          // TODO(i): remove once playground apps no longer use facades directly
-          '@angular/core/src/facade': '/all/@angular/core/src/facade'
         },
         packages: {
           'app': {defaultExtension: 'js'},
           'rxjs': {defaultExtension: 'js'},
-          // TODO(i): remove once playground apps no longer use facades directly
-          '@angular/core/src/facade': {defaultExtension: 'js'}
         }
       });
     } else {
@@ -64,6 +63,7 @@
         packages: {
           'app': {defaultExtension: 'js'},
           '@angular/common': {main: 'index.js', defaultExtension: 'js'},
+          '@angular/animations': {main: 'index.js', defaultExtension: 'js'},
           '@angular/compiler': {main: 'index.js', defaultExtension: 'js'},
           '@angular/core': {main: 'index.js', defaultExtension: 'js'},
           '@angular/forms': {main: 'index.js', defaultExtension: 'js'},

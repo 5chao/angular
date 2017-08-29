@@ -11,7 +11,7 @@ const yargs = require('yargs');
 const nodeUuid = require('node-uuid');
 import * as fs from 'fs-extra';
 
-import {SeleniumWebDriverAdapter, Options, JsonFileReporter, Validator, RegressionSlopeValidator, ConsoleReporter, SizeValidator, MultiReporter, MultiMetric, Runner, Provider} from '@angular/benchpress';
+import {SeleniumWebDriverAdapter, Options, JsonFileReporter, Validator, RegressionSlopeValidator, ConsoleReporter, SizeValidator, MultiReporter, MultiMetric, Runner, StaticProvider} from '@angular/benchpress';
 import {readCommandLine as readE2eCommandLine, openBrowser} from './e2e_util';
 
 let cmdArgs: {'sample-size': number, 'force-gc': boolean, 'dryrun': boolean, 'bundles': boolean};
@@ -35,10 +35,13 @@ export function runBenchmark(config: {
   microMetrics?: {[key: string]: string},
   work?: () => void,
   prepare?: () => void,
+  setup?: () => void
 }): Promise<any> {
   openBrowser(config);
-
-  var description: {[key: string]: any} = {'bundles': cmdArgs.bundles};
+  if (config.setup) {
+    config.setup();
+  }
+  const description: {[key: string]: any} = {'bundles': cmdArgs.bundles};
   config.params.forEach((param) => { description[param.name] = param.value; });
   return runner.sample({
     id: config.id,
@@ -56,7 +59,7 @@ function createBenchpressRunner(): Runner {
   }
   const resultsFolder = './dist/benchmark_results';
   fs.ensureDirSync(resultsFolder);
-  let providers: Provider[] = [
+  const providers: StaticProvider[] = [
     SeleniumWebDriverAdapter.PROTRACTOR_PROVIDERS,
     {provide: Options.FORCE_GC, useValue: cmdArgs['force-gc']},
     {provide: Options.DEFAULT_DESCRIPTION, useValue: {'runId': runId}}, JsonFileReporter.PROVIDERS,

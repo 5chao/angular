@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig-build",
+
+  "compilerOptions": {
+    // Test that we rely on decorator downleveling
+    "emitDecoratorMetadata": false,
+    "paths": {
+      "@angular/compiler": ["../../dist/packages/compiler"]
+    }
+  },
+  "files": [
+    "index.ts",
+    "../../../node_modules/zone.js/dist/zone.js.d.ts"
+  ]
+}

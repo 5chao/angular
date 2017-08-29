@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {ApplicationRef, NgModuleRef} from '@angular/core';
 
 import {bindAction, profile} from '../../util';
@@ -6,8 +14,8 @@ import {buildTree, emptyTree} from '../util';
 import {AppModule, TreeComponent} from './tree';
 
 export function init(moduleRef: NgModuleRef<AppModule>) {
-  var tree: TreeComponent;
-  var appRef: ApplicationRef;
+  let tree: TreeComponent;
+  let appRef: ApplicationRef;
 
   function destroyDom() {
     tree.data = emptyTree;

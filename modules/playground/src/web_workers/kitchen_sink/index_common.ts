@@ -23,11 +23,10 @@ export class RedDec {
   constructor(el: ElementRef, renderer: Renderer) {
     renderer.setElementStyle(el.nativeElement, 'color', 'red');
   }
-  // constructor(renderer: Renderer) {}
 }
 
-// Angular 2.0 supports 2 basic types of directives:
-// - Component - the basic building blocks of Angular 2.0 apps. Backed by
+// Angular supports 2 basic types of directives:
+// - Component - the basic building blocks of Angular apps. Backed by
 //   ShadowDom.(http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/)
 // - Directive - add behavior to existing elements.
 
@@ -54,7 +53,5 @@ export class HelloCmp {
 
   changeGreeting(): void { this.greeting = 'howdy'; }
 
-  onKeyDown(event: any /** TODO #9100 */): void {
-    this.lastKey = String.fromCharCode(event.keyCode);
-  }
+  onKeyDown(event: KeyboardEvent): void { this.lastKey = String.fromCharCode(event.keyCode); }
 }

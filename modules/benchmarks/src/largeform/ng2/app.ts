@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {Component, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
@@ -61,14 +69,14 @@ export class AppComponent {
   copies: number[] = [];
   values: string[] = [];
   constructor() {
-    for (var i = 0; i < 50; i++) {
+    for (let i = 0; i < 50; i++) {
       this.values[i] = `someValue${i}`;
     }
   }
 
   setCopies(count: number) {
     this.copies = [];
-    for (var i = 0; i < count; i++) {
+    for (let i = 0; i < count; i++) {
       this.copies.push(i);
     }
   }
